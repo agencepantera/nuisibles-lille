@@ -1,0 +1,168 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { Schema } from 'schema-dts';
+import ContactCTA from '../components/ContactCTA.astro';
+
+const schema: Schema = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Nuisibles-Lille",
+  "description": "Expert en lutte contre les nuisibles à Lille. Intervention rapide et professionnelle pour tous types de nuisibles.",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Lille",
+    "addressRegion": "Hauts-de-France",
+    "addressCountry": "FR"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": "50.6292",
+    "longitude": "3.0573"
+  },
+  "url": "https://nuisibles-lille.fr",
+  "email": "contact@nuisibles-lille.fr"
+};
+
+const services = [
+  {
+    icon: "🐀",
+    title: "Dératisation",
+    description: "Élimination efficace des rats et souris",
+    features: [
+      "Diagnostic approfondi",
+      "Solutions sur mesure",
+      "Produits professionnels",
+      "Suivi régulier"
+    ]
+  },
+  {
+    icon: "🪲",
+    title: "Désinsectisation",
+    description: "Traitement contre tous types d'insectes",
+    features: [
+      "Identification précise",
+      "Traitement adapté",
+      "Méthodes éprouvées",
+      "Prévention incluse"
+    ]
+  },
+  {
+    icon: "🧼",
+    title: "Désinfection",
+    description: "Assainissement professionnel des locaux",
+    features: [
+      "Protocole strict",
+      "Produits certifiés",
+      "Résultat garanti",
+      "Rapport détaillé"
+    ]
+  }
+];
+---
+
+<Layout 
+  title="Nuisibles-Lille | Expert en Lutte contre les Nuisibles à Lille"
+  description="Entreprise spécialisée dans la lutte contre les nuisibles à Lille. Intervention rapide et efficace pour rats, cafards, punaises de lit et autres nuisibles."
+>
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+  
+  <!-- Hero Section -->
+  <section class="relative bg-primary text-white py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center">
+        <h1 class="text-4xl sm:text-5xl font-bold mb-6">
+          Expert en Lutte contre les Nuisibles à Lille
+        </h1>
+        <p class="text-xl mb-8">
+          Intervention rapide et efficace contre tous types de nuisibles
+        </p>
+        <div class="flex flex-col sm:flex-row justify-center gap-4">
+          <a
+            href="/contact"
+            class="inline-flex items-center bg-accent text-white font-bold py-3 px-8 rounded-lg hover:bg-opacity-90 transition-colors focus:ring-2 focus:ring-offset-2 focus:ring-accent focus:outline-none"
+            style="background-color: #2563EB; color: #FFFFFF;"
+          >
+            <span class="mr-2">🔍</span> Diagnostic gratuit
+          </a>
+          <a
+            href="/contact#devis"
+            class="inline-flex items-center bg-white text-primary font-bold py-3 px-8 rounded-lg hover:bg-gray-100 transition-colors"
+          >
+            <span class="mr-2">📋</span> Demander un devis
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section class="py-16 bg-gradient-to-b from-white to-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold text-center mb-12">Nos Services</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {services.map(service => (
+          <div class="group bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+            <div class="p-6">
+              <div class="flex items-center mb-4">
+                <span class="text-4xl mr-4 group-hover:scale-110 transition-transform">{service.icon}</span>
+                <h3 class="text-xl font-semibold text-primary">{service.title}</h3>
+              </div>
+              <p class="text-gray-600 mb-6">{service.description}</p>
+              <ul class="space-y-3">
+                {service.features.map(feature => (
+                  <li class="flex items-center text-gray-700">
+                    <span class="text-accent mr-2 group-hover:scale-110 transition-transform">✓</span>
+                    {feature}
+                  </li>
+                ))}
+              </ul>
+              <div class="mt-6 pt-6 border-t border-gray-100">
+                <a
+                  href="/services"
+                  class="inline-flex items-center text-primary font-medium hover:text-accent transition-colors"
+                >
+                  En savoir plus
+                  <svg class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Choose Us Section -->
+  <section class="py-16 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold text-center mb-12">Pourquoi Nous Choisir ?</h2>
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div class="text-center">
+          <div class="text-4xl mb-4">⚡</div>
+          <h3 class="text-lg font-semibold mb-2">Intervention Rapide</h3>
+          <p>Réponse sous 24h et intervention d'urgence disponible</p>
+        </div>
+        <div class="text-center">
+          <div class="text-4xl mb-4">🎯</div>
+          <h3 class="text-lg font-semibold mb-2">Expertise</h3>
+          <p>Plus de 10 ans d'expérience dans la lutte anti-nuisibles</p>
+        </div>
+        <div class="text-center">
+          <div class="text-4xl mb-4">🌿</div>
+          <h3 class="text-lg font-semibold mb-2">Éco-responsable</h3>
+          <p>Utilisation de produits respectueux de l'environnement</p>
+        </div>
+        <div class="text-center">
+          <div class="text-4xl mb-4">💰</div>
+          <h3 class="text-lg font-semibold mb-2">Prix Compétitifs</h3>
+          <p>Diagnostic gratuit et tarifs adaptés à votre situation</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <ContactCTA showSecondaryButton={true} />
+</Layout>

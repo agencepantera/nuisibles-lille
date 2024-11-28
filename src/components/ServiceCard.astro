@@ -1,0 +1,27 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  icon: string;
+  features: string[];
+  color?: string;
+}
+
+const { title, description, icon, features } = Astro.props;
+---
+
+<div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow relative z-10 h-full flex flex-col">
+  <div class="flex items-center mb-4">
+    <div class="text-4xl mr-3">{icon}</div>
+    <h3 class="text-xl font-semibold text-primary">{title}</h3>
+  </div>
+  <p class="text-gray-600 mb-6">{description}</p>
+  <ul class="space-y-3 flex-grow">
+    {features.map(feature => (
+      <li class="flex items-start group">
+        <span class="text-accent mr-2 transform group-hover:scale-110 transition-transform">✓</span>
+        <span class="text-gray-700">{feature}</span>
+      </li>
+    ))}
+  </ul>
+</div>

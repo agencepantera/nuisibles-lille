@@ -1,0 +1,147 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PestCard from '../components/PestCard.astro';
+import ContactCTA from '../components/ContactCTA.astro';
+
+const pests = [
+  {
+    title: "Rats et Souris",
+    description: "Les rongeurs sont des nuisibles particulièrement problématiques en milieu urbain. Ils se reproduisent rapidement et peuvent causer d'importants dégâts.",
+    image: "/images/souris-rats-nuisibles-lille.webp",
+    signs: [
+      "Traces de passage et excréments",
+      "Bruits dans les murs ou plafonds",
+      "Traces de grignotage",
+      "Nids dans les zones sombres"
+    ],
+    risks: [
+      "Transmission de maladies",
+      "Dégâts matériels",
+      "Contamination alimentaire",
+      "Risques électriques"
+    ]
+  },
+  {
+    title: "Cafards",
+    description: "Les blattes sont des insectes très résistants qui prolifèrent dans les environnements chauds et humides. Leur présence nécessite une intervention rapide.",
+    image: "/images/cafards-nuisibles-lille.webp",
+    signs: [
+      "Présence nocturne",
+      "Traces d'excréments",
+      "Odeur caractéristique",
+      "Mues dans les recoins"
+    ],
+    risks: [
+      "Contamination alimentaire",
+      "Allergies respiratoires",
+      "Transmission de bactéries",
+      "Stress psychologique"
+    ]
+  },
+  {
+    title: "Punaises de lit",
+    description: "Les punaises de lit sont des parasites nocturnes qui se nourrissent de sang humain. Leur éradication nécessite une expertise particulière.",
+    image: "/images/punaises-lit-nuisibles-lille.webp",
+    signs: [
+      "Piqûres en ligne sur la peau",
+      "Taches noires sur les matelas",
+      "Démangeaisons nocturnes",
+      "Petites taches de sang sur les draps"
+    ],
+    risks: [
+      "Troubles du sommeil",
+      "Réactions allergiques",
+      "Impact psychologique",
+      "Coûts de traitement élevés"
+    ]
+  },
+  {
+    title: "Frelons et Guêpes",
+    description: "Les hyménoptères peuvent représenter un danger réel pour la sécurité des personnes. La destruction de leurs nids doit être réalisée par des professionnels.",
+    image: "/images/frelons-nuisibles-lille.webp",
+    signs: [
+      "Présence de nids",
+      "Va-et-vient d'insectes",
+      "Bourdonnements",
+      "Activité autour des toitures"
+    ],
+    risks: [
+      "Piqûres dangereuses",
+      "Risques allergiques",
+      "Danger pour les animaux",
+      "Dégâts sur les structures"
+    ]
+  }
+];
+---
+
+<Layout
+  title="Guide des Nuisibles | Nuisibles-Lille"
+  description="Découvrez tout sur les nuisibles courants à Lille : rats, cafards, punaises de lit, frelons. Identification, risques et solutions de traitement."
+>
+  <!-- Hero Section -->
+  <section class="bg-primary text-white py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center">
+        <h1 class="text-4xl font-bold mb-6">Guide des Nuisibles</h1>
+        <p class="text-xl max-w-3xl mx-auto">
+          Apprenez à identifier les nuisibles courants et comprendre les risques associés.
+          Une détection précoce permet un traitement plus efficace.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pest Cards Section -->
+  <section class="py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {pests.map(pest => <PestCard {...pest} />)}
+      </div>
+    </div>
+  </section>
+
+  <!-- Prevention Tips -->
+  <section class="py-16 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold text-center mb-12">Conseils de Prévention</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="bg-white p-6 rounded-lg shadow-md">
+          <div class="text-4xl mb-4">🏠</div>
+          <h3 class="text-xl font-semibold mb-4">Entretien du Bâtiment</h3>
+          <ul class="space-y-2 text-gray-600">
+            <li>• Colmater les fissures</li>
+            <li>• Maintenir une bonne ventilation</li>
+            <li>• Réparer les fuites d'eau</li>
+            <li>• Nettoyer régulièrement</li>
+          </ul>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow-md">
+          <div class="text-4xl mb-4">🗑️</div>
+          <h3 class="text-xl font-semibold mb-4">Gestion des Déchets</h3>
+          <ul class="space-y-2 text-gray-600">
+            <li>• Utiliser des poubelles fermées</li>
+            <li>• Évacuer régulièrement</li>
+            <li>• Trier correctement</li>
+            <li>• Nettoyer les conteneurs</li>
+          </ul>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow-md">
+          <div class="text-4xl mb-4">👀</div>
+          <h3 class="text-xl font-semibold mb-4">Surveillance</h3>
+          <ul class="space-y-2 text-gray-600">
+            <li>• Inspection régulière</li>
+            <li>• Détection précoce</li>
+            <li>• Points de contrôle</li>
+            <li>• Intervention rapide</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <ContactCTA
+    title="Suspicion de nuisibles ?"
+    description="N'attendez pas que la situation s'aggrave. Contactez-nous pour une inspection professionnelle."
+  />
+</Layout>

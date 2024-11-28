@@ -1,0 +1,36 @@
+---
+interface Props {
+  title?: string;
+  description?: string;
+  showSecondaryButton?: boolean;
+}
+
+const {
+  title = "Un problème de nuisibles ?",
+  description = "Contactez-nous pour un diagnostic gratuit et une intervention rapide",
+  showSecondaryButton = false
+} = Astro.props;
+---
+
+<section class="bg-blue-900 text-white py-16">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <h2 class="text-3xl font-bold mb-6">{title}</h2>
+    <p class="text-xl mb-8 text-white">{description}</p>
+    <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+      <a
+        href="/contact"
+        class="inline-flex items-center bg-yellow-500 text-blue-900 font-bold py-3 px-8 rounded-lg hover:bg-yellow-400 transition-colors"
+      >
+        <span class="mr-2">🔍</span> Diagnostic gratuit
+      </a>
+      {showSecondaryButton && (
+        <a
+          href="/contact#devis"
+          class="inline-flex items-center bg-white text-blue-900 font-bold py-3 px-8 rounded-lg hover:bg-gray-100 transition-colors"
+        >
+          <span class="mr-2">📋</span> Demander un devis
+        </a>
+      )}
+    </div>
+  </div>
+</section>

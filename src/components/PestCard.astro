@@ -1,0 +1,35 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  image: string;
+  signs: string[];
+  risks: string[];
+}
+
+const { title, description, image, signs, risks } = Astro.props;
+---
+
+<article class="bg-white rounded-lg shadow-md overflow-hidden">
+  <div class="aspect-w-16 aspect-h-9">
+    <img src={image} alt={title} class="w-full h-64 object-cover" />
+  </div>
+  <div class="p-6">
+    <h3 class="text-2xl font-semibold text-primary mb-4">{title}</h3>
+    <p class="text-gray-600 mb-6">{description}</p>
+    
+    <div class="mb-4">
+      <h4 class="font-semibold text-lg mb-2">Signes d'infestation</h4>
+      <ul class="list-disc list-inside space-y-1 text-gray-600">
+        {signs.map(sign => <li>{sign}</li>)}
+      </ul>
+    </div>
+
+    <div>
+      <h4 class="font-semibold text-lg mb-2">Risques</h4>
+      <ul class="list-disc list-inside space-y-1 text-gray-600">
+        {risks.map(risk => <li>{risk}</li>)}
+      </ul>
+    </div>
+  </div>
+</article>

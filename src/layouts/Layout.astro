@@ -1,0 +1,108 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { ViewTransitions } from 'astro:transitions';
+
+interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+---
+
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon-16x16.png" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href={Astro.url} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={Astro.url} />
+    <ViewTransitions />
+    <!-- Toastr CSS CDN -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"
+      rel="stylesheet"
+    />
+    <!-- Custom CSS for toasts (optional for fine-tuning) -->
+    <style>
+      .toast {
+        position: fixed;
+        top: 1rem;
+        right: 1rem;
+        background-color: #4caf50;
+        color: white;
+        padding: 1rem 1.5rem;
+        border-radius: 8px;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+        font-size: 1rem;
+        z-index: 9999;
+        animation: fadeInOut 3s ease-in-out;
+      }
+      .toast-error {
+        background-color: #f44336;
+      }
+      @keyframes fadeInOut {
+        0% {
+          opacity: 0;
+          transform: translateY(-10px);
+        }
+        10%,
+        90% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+        100% {
+          opacity: 0;
+          transform: translateY(-10px);
+        }
+      }
+    </style>
+  </head>
+  <body class="flex flex-col min-h-screen bg-gray-50">
+    <Header />
+    <main class="flex-grow">
+      <slot />
+    </main>
+    <Footer />
+    <!-- Toast Container -->
+    <div id="toast-container"></div>
+    <!-- Toastr JS CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <!-- Toast Utility Script -->
+    <script>
+      function showToast(message, type = "success") {
+        const toastContainer = document.getElementById("toast-container");
+        const toast = document.createElement("div");
+        toast.className = `toast ${type === "error" ? "toast-error" : ""}`;
+        toast.textContent = message;
+
+        toastContainer.appendChild(toast);
+
+        // Remove toast after 3 seconds
+        setTimeout(() => {
+          toastContainer.removeChild(toast);
+        }, 3000);
+      }
+    </script>
+  </body>
+</html>
+
+<style is:global>
+  :root {
+    --primary: #1a5f7a;
+    --secondary: #2d8bba;
+    --accent: #ff6b35;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+</style>
